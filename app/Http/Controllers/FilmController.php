@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Film;
+use App\Exports\FilmExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class FilmController extends Controller
@@ -20,5 +21,10 @@ class FilmController extends Controller
         $response = Http::get("https://swapi.dev/api/films/$id");
         $jsonData = $response->json();
         return $jsonData;
+    }
+
+    public function export() 
+    {
+        return Excel::store(new FilmExport, 'films.csv');
     }
 }

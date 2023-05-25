@@ -6,6 +6,14 @@ use Illuminate\Support\Facades\Storage;
 
 class RootController extends Controller
 {
+    private $app;
+    private $controller;
+
+    public function __construct()
+    {
+        $this->app = app();
+    }
+
      /**
      * get resource
      *
@@ -14,9 +22,8 @@ class RootController extends Controller
     public function get_resources(string $resource, string $id = null)
     {
         $controllerName = ucfirst($resource) .'Controller';
-        $app = app();
-        $controller = $app->make('\App\Http\Controllers\\'. $controllerName );
-        $data = $controller->callAction('get', ['id' => $id]);
+        $this->controller = $this->app->make('\App\Http\Controllers\\'. $controllerName );
+        $data = $this->controller->callAction('get', ['id' => $id]);
         return $this->write($data, $resource);
     }
 
@@ -31,13 +38,7 @@ class RootController extends Controller
     private function write($json, $resource)
     {
         //Todo create and write data to csv
-        $fileName = "$resource.csv";
-        Storage::disk('local')->put($fileName, 'Contents');
+        $fileName = $this->controller->export($json);
         return $this->save($fileName);
-    }
-
-    private function save($fileName)
-    {
-        $filePath = "storage/app/$fileName";
     }
 }

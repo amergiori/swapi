@@ -4,7 +4,7 @@ namespace App\Exports;
 use App\Models\Film;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class UsersExport implements FromCollection
+class FilmExport implements FromCollection
 {
     public function collection()
     {
