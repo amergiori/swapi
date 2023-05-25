@@ -16,8 +16,9 @@ class FilmController extends Controller
      */
     public function get(string $id = null)
     {
+        $id = $id === 'all' ? '' : $id;
         $response = Http::get("https://swapi.dev/api/films/$id");
         $jsonData = $response->json();
-        $this->write($jsonData);
+        return $jsonData;
     }
 }
