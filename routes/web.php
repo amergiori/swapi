@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RootController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\ExcelCsvController;
 
@@ -14,11 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('film', [FilmController::class, 'index'])
+Route::get('/{resource}/{id?}', [RootController::class, 'get_resources']);
 
 // Route::get('excel-csv-file', [ExcelCsvController::class, 'index']);
 // Route::get('export-excel-csv-file/{slug}', [ExcelCsvController::class, 'exportExcelCSV']);
