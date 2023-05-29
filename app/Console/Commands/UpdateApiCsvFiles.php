@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Resources\Root;
+use App\Models\Root;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
