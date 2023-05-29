@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RootController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\ExcelCsvController;
 
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{resource}/{id?}', [RootController::class, 'get_resources']);
+Route::get('/export', [TestController::class, 'export']);
 
 // Route::get('excel-csv-file', [ExcelCsvController::class, 'index']);
 // Route::get('export-excel-csv-file/{slug}', [ExcelCsvController::class, 'exportExcelCSV']);
